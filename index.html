@@ -1,220 +1,264 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine 💖 V3</title>
+<title>Valentine 💖</title>
 
 <style>
-body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(to bottom, #ffe6f0, #fff5fa);
-    overflow: hidden;
-    font-family: 'Segoe UI', sans-serif;
+body{
+    margin:0;
+    height:100vh;
+    background:radial-gradient(circle at top,#ffe6f0,#ffcce6,#fff5fa);
+    font-family:'Segoe UI',sans-serif;
+    overflow:hidden;
 }
 
-/* REALISTIC EMOJI FALL */
-.emoji {
-    position: fixed;
-    top: -30px;
-    pointer-events: none;
-    animation: emojiFall linear infinite;
-    filter: blur(0.3px);
+/* CENTER */
+.container{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    width:90%;
+    max-width:420px;
 }
 
-@keyframes emojiFall {
-    0% {
-        transform: translateY(-30px) translateX(0) rotate(0deg);
-        opacity: 0.9;
-    }
-    50% {
-        transform: translateY(50vh) translateX(20px) rotate(180deg);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(110vh) translateX(-20px) rotate(360deg);
-        opacity: 0.6;
-    }
+h1{
+    color:#a3004c;
+    text-shadow:0 0 15px #ff99cc,0 0 30px #ff4d88;
+    font-size:clamp(22px,5vw,32px);
 }
 
-/* REALISTIC ROSE PETALS */
-.petal {
-    position: fixed;
-    top: -40px;
-    pointer-events: none;
-    animation: petalFall linear infinite;
+p{
+    margin-top:15px;
+    font-size:clamp(16px,4vw,18px);
 }
 
-@keyframes petalFall {
-    0% {
-        transform: translateY(-40px) translateX(0) rotate(0deg);
-        opacity: 1;
-    }
-    50% {
-        transform: translateY(50vh) translateX(-25px) rotate(180deg);
-        opacity: 0.9;
-    }
-    100% {
-        transform: translateY(110vh) translateX(25px) rotate(360deg);
-        opacity: 0.8;
-    }
+/* BUTTON AREA */
+.buttons{
+    margin-top:40px;
+    position:relative;
+    height:120px;
 }
 
-/* First interface */
-.container {
-    position: absolute;
-    width: 100%;
-    top: 40%;
-    text-align: center;
+button{
+    width:45%;
+    padding:14px;
+    font-size:clamp(14px,4vw,18px);
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
 }
 
-h1 {
-    color: #a3004c;
+#yes{
+    background:#ff4d88;
+    color:white;
+    position:absolute;
+    left:0;
 }
 
-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    z-index: 100;
+#no{
+    background:white;
+    position:absolute;
+    right:0;
 }
 
-#yes {
-    background: #ff4d88;
-    color: white;
+/* SECOND CARD */
+.card{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:90%;
+    max-width:360px;
+    background:#fff0f6;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 0 40px rgba(255,0,128,0.4);
+    text-align:center;
 }
 
-#no {
-    background: white;
-    /* CHANGED: Fixed position to stay within viewport */
-    position: fixed; 
-    transition: all 0.2s ease;
+.card img{
+    width:100%;
+    border-radius:15px;
+    margin-bottom:15px;
 }
 
-/* Second interface */
-.card {
-    display: none;
-    position: absolute;
-    top: 8%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fff0f6;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.2);
-    width: 360px;
-    text-align: center;
-    z-index: 1000;
+.message{
+    background:white;
+    padding:15px;
+    border-radius:15px;
+    color:#7a003c;
+    font-size:clamp(14px,4vw,16px);
 }
 
-.card img {
-    width: 100%;
-    border-radius: 15px;
+/* RING POP */
+.ringPop{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    font-size:80px;
+    animation:ringAnim 0.9s ease-out forwards;
+    z-index:2000;
 }
 
-.message {
-    background: white;
-    margin-top: 15px;
-    padding: 15px;
-    border-radius: 15px;
-    color: #7a003c;
+@keyframes ringAnim{
+    0%{transform:translate(-50%,-50%) scale(0);opacity:0;}
+    60%{transform:translate(-50%,-50%) scale(1.3);opacity:1;}
+    100%{transform:translate(-50%,-50%) scale(1);opacity:1;}
+}
+
+/* SPARK */
+.spark{
+    position:fixed;
+    pointer-events:none;
+    font-size:14px;
+    animation:fadeSpark 1s forwards;
+}
+@keyframes fadeSpark{
+    0%{opacity:1;}
+    100%{opacity:0;}
+}
+
+/* FALLING */
+.fall{
+    position:fixed;
+    top:-60px;
+    pointer-events:none;
+    animation:fallAnim linear forwards;
+}
+
+@keyframes fallAnim{
+    0%{transform:translateY(0) rotate(0deg);opacity:1;}
+    100%{transform:translateY(110vh) rotate(360deg);opacity:0.9;}
 }
 </style>
 </head>
-
 <body>
 
 <audio id="loveSong" loop>
-    <source src="song.mp3" type="audio/mpeg">
+<source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container" id="question">
-    <h1>💖 Will you be my Valentine? 💖</h1><br>
-    <button id="yes" onclick="showCard()">Yes 💘</button>
-    <button id="no" onmouseover="moveNo()" onclick="moveNo()" ontouchstart="moveNo()">No 😒</button>
+<h1>𝓦𝓲𝓵𝓵 𝔂𝓸𝓾 𝓫𝓮 𝓶𝔂 𝓥𝓪𝓵𝓮𝓷𝓽𝓲𝓷𝓮?🧸🎀</h1>
+<p>𝕔𝕙𝕠𝕠𝕤𝕖 𝕨𝕚𝕤𝕖𝕝𝕪 💕</p>
+
+<div class="buttons">
+<button id="yes" onclick="showCard()">Yes 🥰</button>
+<button id="no">No 😒</button>
+</div>
 </div>
 
 <div class="card" id="card">
-    <h1>💞 Yay! 💞</h1>
-    <img src="petal.png">
-    <img src="proposal.png">
-    <div class="message">
-        <h3>Finally 🌹</h3>
-        <p>
-            I knew you'd say yes 💕<br>
-            You made my world beautiful 💖<br>
-            Forever starts now 💍
-        </p>
-    </div>
+<h1>𝔂𝓪𝔂! 🥳</h1>
+<img src="images/proposal.png">
+<div class="message">
+<p id="typingText"></p>
+</div>
 </div>
 
 <script>
-// No button escape
-function moveNo() {
-    const noBtn = document.getElementById("no");
-    
-    // Get button dimensions
-    const btnWidth = noBtn.offsetWidth;
-    const btnHeight = noBtn.offsetHeight;
-    
-    // Get viewport dimensions
-    const vWidth = window.innerWidth;
-    const vHeight = window.innerHeight;
-    
-    // Calculate safe boundaries (keeping button inside)
-    let x = Math.random() * (vWidth - btnWidth - 40) + 20;
-    let y = Math.random() * (vHeight - btnHeight - 40) + 20;
-    
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+
+/* SAFE NO BUTTON */
+const noBtn=document.getElementById("no");
+const btnContainer=document.querySelector(".buttons");
+
+noBtn.addEventListener("mouseover",moveNo);
+noBtn.addEventListener("click",moveNo);
+
+function moveNo(){
+    const maxX=btnContainer.offsetWidth-noBtn.offsetWidth;
+    const maxY=btnContainer.offsetHeight-noBtn.offsetHeight;
+    noBtn.style.left=Math.random()*maxX+"px";
+    noBtn.style.top=Math.random()*maxY+"px";
 }
 
-// Yes click → show card + play looping song
-function showCard() {
-    document.getElementById("question").style.display = "none";
-    document.getElementById("card").style.display = "block";
-    
-    let audio = document.getElementById("loveSong");
-    audio.play().catch(error => {
-        console.log("Audio playback failed:", error);
-    });
+/* SHOW CARD WITH RING */
+function showCard(){
+
+    const ring=document.createElement("div");
+    ring.className="ringPop";
+    ring.innerHTML="💍";
+    document.body.appendChild(ring);
+
+    setTimeout(()=>{
+        ring.remove();
+        document.getElementById("question").style.display="none";
+        document.getElementById("card").style.display="block";
+
+        const audio=document.getElementById("loveSong");
+        audio.volume=0;
+        audio.play();
+
+        let v=0;
+        const fade=setInterval(()=>{
+            if(v<1){v+=0.05;audio.volume=v;}
+            else clearInterval(fade);
+        },150);
+
+        typeMessage();
+        startFalling();
+    },900);
 }
 
-// REALISTIC MIX FALL
-const emojis = ["❤️","💖","💛","🤍","✨"];
-
-function startRealisticFall() {
-    setInterval(() => {
-        if (Math.random() < 0.55) {
-            // Emoji
-            const e = document.createElement("div");
-            e.className = "emoji";
-            e.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-            e.style.left = Math.random() * 100 + "vw";
-            e.style.fontSize = (Math.random() * 14 + 16) + "px";
-            e.style.animationDuration = (Math.random() * 5 + 5) + "s";
-            document.body.appendChild(e);
-            setTimeout(() => e.remove(), 12000);
-        } else {
-            // Rose petal
-            const p = document.createElement("img");
-            p.src = "petal.png";
-            p.className = "petal";
-            p.style.left = Math.random() * 100 + "vw";
-            p.style.width = (Math.random() * 18 + 22) + "px";
-            p.style.animationDuration = (Math.random() * 6 + 6) + "s";
-            document.body.appendChild(p);
-            setTimeout(() => p.remove(), 14000);
+/* TYPING */
+function typeMessage(){
+    const text="𝙄 𝙠𝙣𝙚𝙬 𝙮𝙤𝙪'𝙙 𝙨𝙖𝙮 𝙮𝙚𝙨 💕\n𝙔𝙤𝙪 𝙢𝙖𝙙𝙚 𝙢𝙮 𝙬𝙤𝙧𝙡𝙙 𝙗𝙚𝙖𝙪𝙩𝙞𝙛𝙪𝙡 💖\n𝙁𝙤𝙧𝙚𝙫𝙚𝙧 𝙨𝙩𝙖𝙧𝙩𝙨 𝙣𝙤𝙬 💍";
+    const el=document.getElementById("typingText");
+    el.innerHTML="";
+    let i=0;
+    function type(){
+        if(i<text.length){
+            if(text[i]=="\n") el.innerHTML+="<br>";
+            else el.innerHTML+=text[i];
+            i++;
+            setTimeout(type,35);
         }
-    }, 250);
+    }
+    type();
 }
 
-// Start background immediately (both screens)
-startRealisticFall();
-</script>
+/* SPARK TRAIL */
+document.addEventListener("mousemove",(e)=>{
+    const s=document.createElement("div");
+    s.className="spark";
+    s.innerHTML="✨";
+    s.style.left=e.clientX+"px";
+    s.style.top=e.clientY+"px";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),800);
+});
 
+/* HEARTS + PETAL.PNG */
+function startFalling(){
+    setInterval(()=>{
+        const element=document.createElement("div");
+        element.className="fall";
+
+        if(Math.random()>0.5){
+            const hearts=["❤️","💙","💜","🧡","💛","💖"];
+            element.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
+            element.style.fontSize=(18+Math.random()*25)+"px";
+        }else{
+            const img=document.createElement("img");
+            img.src="images/petal.png";
+            img.style.width=(20+Math.random()*25)+"px";
+            element.appendChild(img);
+        }
+
+        element.style.left=Math.random()*100+"vw";
+        element.style.animationDuration=(4+Math.random()*3)+"s";
+
+        document.body.appendChild(element);
+        setTimeout(()=>element.remove(),7000);
+    },300);
+}
+
+</script>
 </body>
 </html>
